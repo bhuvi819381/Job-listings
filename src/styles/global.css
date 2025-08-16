@@ -7,12 +7,6 @@
     --color-Dark-Green: hsl(180, 14%, 20%);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     max-width: 90rem;
     min-height: 100vh;

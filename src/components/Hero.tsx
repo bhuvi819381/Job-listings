@@ -1,15 +1,43 @@
+import Card from "@/components/Card";
+import { useEffect, useState } from "react";
 
+type CardProps = {
+  id: number;
+  company: string;
+  logo: string;
+  new: boolean;
+  featured: boolean;
+  position: string;
+  role: string;
+  level: string;
+  postedAt: string;
+  contract: string;
+  location: string;
+  languages: string[];
+  tools: string[];
+};
 
-type Props = {
-    bg: string
-}
 const Hero = () => {
-  return (
-    <main className="w-full">
-        <header className="w-full h-39 border border-red-500 bg-[url('../assets/images/bg-header-desktop.svg')] bg-cover bg-Green bg-no-repeat bg-center">
+  const [data, setData] = useState<CardProps[]>([]);
 
-        </header>
-    </main>
-  )
-}
-export default Hero
+  useEffect(() => {
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((err) => console.error("JSON Not Loaded", err));
+  }, []);
+  return (
+    <>
+
+      <header className="bg-Green h-39 w-full bg-[url('/images/bg-header-mobile.svg')] bg-cover bg-center bg-no-repeat md:bg-[url('/images/bg-header-desktop.svg')]"></header>
+
+      <main className="flex h-full w-full flex-col items-center gap-5 pt-19">
+
+        {data.map((item, index) => (
+          <Card key={item.id} {...item} className={index < 2 ? "border-l-4 border-Green": ""}/>
+        ))}
+      </main>
+    </>
+  );
+};
+export default Hero;
