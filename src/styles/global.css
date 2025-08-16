@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+    --color-Green: hsl(180, 29%, 50%);
+    --color-BG: hsl(180, 52%, 96%);
+    --color-Gray: hsl(180, 8%, 52%);
+    --color-Dark-Green: hsl(180, 14%, 20%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 90rem;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: var(--color-BG);
+    font-size: 15px;
+    font-family: "Spartan", sans-serif;
+}
