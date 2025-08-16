@@ -1,8 +1,8 @@
-import { span } from "motion/react-client";
 
-const Card = ({ className = "",...item }) => {
+
+const Card = ({ ...item }) => {
   return (
-    <div className={` ${className} flex w-[69rem] items-center justify-between rounded-lg bg-white p-8 shadow-lg`}>
+    <div className={` ${item.featured && "border-l-4 border-Green"} flex w-[69rem] items-center justify-between rounded-lg bg-white p-8 shadow-lg`}>
       {/* Left Side of Card */}
 
       <div className="flex gap-7">
@@ -46,12 +46,12 @@ const Card = ({ className = "",...item }) => {
         <span className="bg-Green/20 px-2 py-1 rounded-md text-Green font-bold">{item.level}</span>
         <span className="flex gap-3">
           {item.languages.map((lang: string, index: string) => (
-            <span id={index} className="bg-Green/20 px-2 py-1 rounded-md text-Green font-bold">{lang}</span>
+            <span key={index} className="bg-Green/20 px-2 py-1 rounded-md text-Green font-bold">{lang}</span>
           ))}
         </span>
         <span className="flex gap-3">{
           item.tools.map((tool: string, index: string) => (
-            <span id={index} className="bg-Green/20 px-2 py-1 rounded-md text-Green font-bold">{tool}</span>
+            <span key={index} className="bg-Green/20 px-2 py-1 rounded-md text-Green font-bold">{tool}</span>
           ))
         }</span>
       </div>

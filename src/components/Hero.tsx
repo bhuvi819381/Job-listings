@@ -33,8 +33,8 @@ const Hero = () => {
 
       <main className="flex h-full w-full flex-col items-center gap-5 pt-19">
 
-        {data.map((item, index) => (
-          <Card key={item.id} {...item} className={index < 2 ? "border-l-4 border-Green": ""}/>
+        {data.map((item) => (
+          <Card key={item.id} {...item} />
         ))}
       </main>
     </>
