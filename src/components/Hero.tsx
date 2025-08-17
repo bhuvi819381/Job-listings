@@ -31,7 +31,7 @@ const Hero = () => {
 
       <header className="bg-Green h-39 w-full bg-[url('/images/bg-header-mobile.svg')] bg-cover bg-center bg-no-repeat md:bg-[url('/images/bg-header-desktop.svg')]"></header>
 
-      <main className="flex h-full w-full flex-col items-center gap-5 pt-19">
+      <main className="flex h-full w-full flex-col items-center gap-5 p-2 md:p-0 md:pt-19 ">
 
         {data.map((item) => (
           <Card key={item.id} {...item} />
