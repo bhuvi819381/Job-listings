@@ -1,23 +1,33 @@
-const Card = ({ ...item }) => {
+import { motion } from "motion/react";
+import type { CardProps } from "@/types/Card";
+
+type cardWithIndex = CardProps & { index: number };
+
+const Card = ({ index, ...item }: cardWithIndex) => {
   return (
-    <div className={` ${item.featured && "border-l-4 border-Green"} flex w-full md:w-[69rem] items-center justify-between rounded-lg bg-white p-8 shadow-lg md:flex-row flex-col`}>
+    <motion.div
+      className={` ${item.featured && "border-Green border-l-4"} flex w-full flex-col items-center justify-between rounded-lg bg-white p-8 shadow-lg md:w-full md:flex-row lg:w-[69rem]`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.5, delay: index * 0.3 }}
+    >
       {/* Left Side of Card */}
 
-      <div className="flex justify-center items-center gap-7 mb-5 md:mb-0">
+      <div className="mb-5 flex flex-col items-center justify-center gap-3 md:mb-0 md:flex-row md:gap-7">
         <img src={item.logo} alt={item.company} loading="lazy" />
 
         <div className="flex flex-col gap-1">
-
           {/* company */}
-          <div className="flex gap-3">
-            <span className="text-Green font-bold text-md">{item.company}</span>
+          <div className="flex gap-1 md:gap-3">
+            <span className="text-Green text-md font-bold">{item.company}</span>
             {item.new && (
-              <span className="rounded-full bg-Green px-2 py-1 text-xs font-bold text-white ">
+              <span className="bg-Green rounded-full px-2 py-1 text-xs font-bold text-white">
                 NEW!
               </span>
             )}
             {item.featured && (
-              <span className="rounded-full bg-Dark-Green px-2 py-1 text-xs font-bold text-white">
+              <span className="bg-Dark-Green rounded-full px-2 py-1 text-xs font-bold text-white">
                 FEATURED
               </span>
             )}
@@ -25,11 +35,10 @@ const Card = ({ ...item }) => {
 
           {/* position */}
 
-            <h1 className="text-xl font-bold text-Dark-Green">{item.position}</h1>
-
+          <h1 className="text-Dark-Green text-xl font-bold">{item.position}</h1>
 
           {/* details */}
-          <div className="flex gap-10 font-semibold text-Gray">
+          <div className="text-Gray flex gap-10 font-semibold">
             <span>{item.postedAt}</span>
             <span>{item.contract}</span>
             <span>{item.location}</span>
@@ -39,21 +48,35 @@ const Card = ({ ...item }) => {
 
       {/* Right Side of Card */}
 
-      <div className="flex gap-3 border-t md:border-t-0 border-Gray pt-4 md:pt-0 flex-wrap">
-        <span className="bg-Green/10 px-2 py-1 rounded-md text-Green font-bold">{item.role}</span>
-        <span className="bg-Green/10 px-2 py-1 rounded-md text-Green font-bold">{item.level}</span>
+      <div className="border-Gray flex flex-wrap gap-3 border-t pt-4 md:border-t-0 md:pt-0">
+        <button className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold">
+          {item.role}
+        </button>
+        <button className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold">
+          {item.level}
+        </button>
         <span className="flex gap-3">
-          {item.languages.map((lang: string, index: string) => (
-            <span key={index} className="bg-Green/10 px-2 py-1 rounded-md text-Green font-bold">{lang}</span>
+          {item.languages.map((lang: string, index: number) => (
+            <button
+              key={index}
+              className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+            >
+              {lang}
+            </button>
           ))}
         </span>
-        <span className="flex gap-3">{
-          item.tools.map((tool: string, index: string) => (
-            <span key={index} className="bg-Green/10 px-2 py-1 rounded-md text-Green font-bold">{tool}</span>
-          ))
-        }</span>
+        <span className="flex gap-3">
+          {item.tools.map((tool: string, index: number) => (
+            <button
+              key={index}
+              className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+            >
+              {tool}
+            </button>
+          ))}
+        </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Card;
