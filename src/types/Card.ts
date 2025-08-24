@@ -1,9 +1,9 @@
-export type CardProps = {
+export interface CardProps {
   id: number;
   company: string;
   logo: string;
-  new?: boolean;
-  featured?: boolean;
+  new: boolean;
+  featured: boolean;
   position: string;
   role: string;
   level: string;
@@ -12,4 +12,4 @@ export type CardProps = {
   location: string;
   languages: string[];
   tools: string[];
-};
+}

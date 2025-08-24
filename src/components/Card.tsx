@@ -1,9 +1,12 @@
 import { motion } from "motion/react";
 import type { CardProps } from "@/types/Card";
 
-type cardWithIndex = CardProps & { index: number };
+type cardWithIndex = CardProps & {
+  index: number;
+  addFilter: (filter: string) => void;
+};
 
-const Card = ({ index, ...item }: cardWithIndex) => {
+const Card = ({ index, addFilter, ...item }: cardWithIndex) => {
   return (
     <motion.div
       className={` ${item.featured && "border-Green border-l-4"} flex w-full flex-col items-center justify-between rounded-lg bg-white p-8 shadow-lg md:w-full md:flex-row lg:w-[69rem]`}
@@ -49,10 +52,16 @@ const Card = ({ index, ...item }: cardWithIndex) => {
       {/* Right Side of Card */}
 
       <div className="border-Gray flex flex-wrap gap-3 border-t pt-4 md:border-t-0 md:pt-0">
-        <button className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold">
+        <button
+          className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+          onClick={() => addFilter(item.role)}
+        >
           {item.role}
         </button>
-        <button className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold">
+        <button
+          className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+          onClick={() => addFilter(item.level)}
+        >
           {item.level}
         </button>
         <span className="flex gap-3">
@@ -60,6 +69,7 @@ const Card = ({ index, ...item }: cardWithIndex) => {
             <button
               key={index}
               className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+              onClick={() => addFilter(lang)}
             >
               {lang}
             </button>
@@ -70,6 +80,7 @@ const Card = ({ index, ...item }: cardWithIndex) => {
             <button
               key={index}
               className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+              onClick={() => addFilter(tool)}
             >
               {tool}
             </button>
