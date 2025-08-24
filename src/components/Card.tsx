@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import type { CardProps } from "@/types/Card";
 
@@ -7,9 +8,10 @@ type cardWithIndex = CardProps & {
 };
 
 const Card = ({ index, addFilter, ...item }: cardWithIndex) => {
+  const [isActive, setIsActive] = useState(false);
   return (
     <motion.div
-      className={` ${item.featured && "border-Green border-l-4"} flex w-full flex-col items-center justify-between rounded-lg bg-white p-8 shadow-lg md:w-full md:flex-row lg:w-[69rem]`}
+      className={` ${item.featured && "border-Green border-l-4"} flex w-full flex-col items-center justify-between rounded-lg bg-white p-8 shadow-lg md:w-full md:flex-row lg:w-[69rem] mt-12 md:mt-12 lg:mt-0`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
@@ -53,13 +55,15 @@ const Card = ({ index, addFilter, ...item }: cardWithIndex) => {
 
       <div className="border-Gray flex flex-wrap gap-3 border-t pt-4 md:border-t-0 md:pt-0">
         <button
-          className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+          type="button"
+          className={`bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 active font-bold focus:bg-Green focus:text-white focus:outline-none`}
           onClick={() => addFilter(item.role)}
         >
           {item.role}
         </button>
         <button
-          className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+        type="button"
+          className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold focus:bg-Green focus:text-white focus:outline-none"
           onClick={() => addFilter(item.level)}
         >
           {item.level}
@@ -67,8 +71,9 @@ const Card = ({ index, addFilter, ...item }: cardWithIndex) => {
         <span className="flex gap-3">
           {item.languages.map((lang: string, index: number) => (
             <button
+              type="button"
               key={index}
-              className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+              className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold focus:bg-Green focus:text-white focus:outline-none"
               onClick={() => addFilter(lang)}
             >
               {lang}
@@ -78,8 +83,9 @@ const Card = ({ index, addFilter, ...item }: cardWithIndex) => {
         <span className="flex gap-3">
           {item.tools.map((tool: string, index: number) => (
             <button
+              type="button"
               key={index}
-              className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold"
+              className="bg-Green/10 text-Green cursor-pointer rounded-md px-2 py-1 font-bold focus:bg-Green focus:text-white focus:outline-none"
               onClick={() => addFilter(tool)}
             >
               {tool}

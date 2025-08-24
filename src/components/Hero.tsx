@@ -4,7 +4,6 @@ import type { CardProps } from "@/types/Card";
 import Filter from "@/components/Filter";
 
 type Props = {
-  data: CardProps[];
   filters: string[];
   addFilter: (filter: string) => void;
   removeFilter: (filter: string) => void;
@@ -55,7 +54,7 @@ const Hero = () => {
     <>
       <header className="bg-Green relative h-39 w-full bg-[url('/images/bg-header-mobile.svg')] bg-cover bg-center bg-no-repeat md:bg-[url('/images/bg-header-desktop.svg')]"></header>
 
-      <main className="mx-auto w-full p-4 md:w-full lg:w-[69rem] lg:p-0">
+      <main className="mx-auto p-4 md:w-full lg:w-[69rem] lg:p-0 ">
         <Filter
           data={data}
           filters={filters}
